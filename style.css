@@ -1,0 +1,523 @@
+/* ================================================
+   TASKPAD — Stylesheet
+   ================================================ */
+
+/* ── Light Theme Variables ── */
+:root {
+    --bg-page: #c8c5be;
+    --bg-paper: #faf8f2;
+    --color-text: #1e1c18;
+    --color-text-muted: #7a756c;
+    --color-heading: #111008;
+    --color-red-line: #e8b4b4;
+    --color-rule: #dedad2;
+    --color-divider: #c8c4bb;
+    --color-border: #c8c4bb;
+    --color-shadow: rgba(0, 0, 0, 0.16);
+    --color-btn-bg: #2a2823;
+    --color-btn-text: #faf8f2;
+    --color-btn-hover: #111008;
+    --color-secondary-btn-bg: #e2dfd8;
+    --color-secondary-btn-text: #2a2823;
+    --color-secondary-btn-hover: #ccc9c1;
+    --color-status: #9a9590;
+    --color-completed: #2e7d52;
+    --color-completed-bg: #edf7f2;
+    --color-input-border: #b0aba3;
+    --color-counter: #9a9590;
+    --color-toolbar-bg: #efece4;
+    --color-toolbar-border: #dedad2;
+    --color-page-btn-bg: #e2dfd8;
+    --color-page-btn-text: #2a2823;
+    --color-page-btn-hover: #ccc9c1;
+    --line-height-ruled: 32px;
+}
+
+/* ── Dark Theme Variables ── */
+[data-theme="dark"] {
+    --bg-page:                  #141312;
+    --bg-paper:                 #242320; 
+    --color-text:               #d4cfc7;
+    --color-text-muted:         #827d75; 
+    --color-heading:            #e8e3db;
+    --color-red-line:           #8a3a3a; 
+    --color-rule:               #3a3731; 
+    --color-divider:            #3a3731;
+    --color-border:             #3a3731;
+    --color-shadow:             rgba(0, 0, 0, 0.5);
+    --color-btn-bg:             #4a4742; 
+    --color-btn-text:           #e8e3db;
+    --color-btn-hover:          #5a5751;
+    --color-secondary-btn-bg:   #2a2925;
+    --color-secondary-btn-text: #a0998f;
+    --color-secondary-btn-hover:#333028;
+    --color-status:             #827d75;
+    --color-completed:          #4caf78;
+    --color-completed-bg:       #1a261c;
+    --color-input-border:       #55514a; 
+    --color-counter:            #827d75;
+    --color-toolbar-bg:         #1b1a17; 
+    --color-toolbar-border:     #3a3731;
+    --color-page-btn-bg:        #2a2925;
+    --color-page-btn-text:      #a0998f;
+    --color-page-btn-hover:     #333028;
+}
+
+/* ── Base ── */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--bg-page);
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    padding: 40px 0 60px;
+    color: var(--color-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Notepad Shell ── */
+.notepad {
+    width: 480px;
+    background-color: var(--bg-paper);
+    min-height: 500px;
+    box-shadow: 6px 6px 20px var(--color-shadow);
+    position: relative;
+    border: 1px solid var(--color-border);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ── Toolbar ── */
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 14px 6px 58px;
+    background-color: var(--color-toolbar-bg);
+    border-bottom: 1px solid var(--color-toolbar-border);
+    transition: background-color 0.3s ease;
+}
+
+.toolbar-label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+    padding: 4px 6px;
+    margin-left: 0;
+    border-radius: 4px;
+    line-height: 1;
+    transition: background-color 0.2s ease;
+}
+
+#theme-toggle:hover {
+    background-color: var(--color-rule);
+}
+
+/* ── Vertical Margin Line ── */
+.red-line {
+    position: absolute;
+    left: 50px;
+    top: 37px;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--color-red-line);
+    transition: background-color 0.3s ease;
+}
+
+/* ── Content Area ── */
+.content {
+    padding: 16px 20px 24px 60px;
+}
+
+/* ── Heading ── */
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.4rem;
+    color: var(--color-heading);
+    border-bottom: 1px solid var(--color-heading);
+    margin-top: 0;
+    padding-bottom: 4px;
+    letter-spacing: 0.08em;
+    line-height: var(--line-height-ruled);
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ── Finished Section ── */
+.divider,
+.section-title,
+#completed-list,
+#clear-btn {
+    display: none;
+}
+
+.section-title {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: 16px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.divider {
+    height: 1px;
+    background-color: var(--color-divider);
+    margin: 20px 0;
+    transition: background-color 0.3s ease;
+}
+
+/* ── Input Area ── */
+.input-area {
+    display: flex;
+    margin-bottom: 6px;
+}
+
+input[type="text"] {
+    border: none;
+    border-bottom: 1px dashed var(--color-input-border);
+    font-family: 'Courier New', monospace;
+    flex-grow: 1;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    color: var(--color-text);
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+input[type="text"]::placeholder {
+    color: var(--color-text-muted);
+}
+
+/* ── Buttons ── */
+button {
+    background: var(--color-btn-bg);
+    color: var(--color-btn-text);
+    border: none;
+    font-family: 'Courier New', monospace;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 5px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--color-btn-hover);
+}
+
+.btn-icon {
+    font-size: 14px;
+    display: inline-block;
+}
+
+/* ── Delete Button ── */
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px 4px;
+    margin-left: 4px;
+    flex-shrink: 0;
+    border-radius: 3px;
+    opacity: 0;
+    font-weight: normal;
+    letter-spacing: 0;
+    transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+
+li:hover .delete-btn {
+    opacity: 1;
+}
+
+.delete-btn:hover {
+    background-color: rgba(180, 40, 40, 0.1);
+    color: inherit;
+}
+
+[data-theme="dark"] .delete-btn:hover {
+    background-color: rgba(220, 80, 80, 0.15);
+}
+
+.delete-btn .btn-icon {
+    font-size: 14px;
+    color: inherit;
+}
+
+/* ── Status Row ── */
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 4px 0 6px;
+    min-height: 16px;
+}
+
+#status-bar {
+    font-size: 11px;
+    color: var(--color-status);
+    letter-spacing: 0.04em;
+    transition: color 0.3s ease;
+}
+
+.page-indicator {
+    font-size: 10px;
+    color: var(--color-text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+/* ── Active Task List ── */
+ol {
+    padding-left: 0;
+    margin-top: 0;
+    list-style-type: none;
+    counter-reset: task-counter;
+    background-image: repeating-linear-gradient(to bottom,
+            transparent,
+            transparent calc(var(--line-height-ruled) - 1px),
+            var(--color-rule) calc(var(--line-height-ruled) - 1px),
+            var(--color-rule) var(--line-height-ruled));
+    min-height: calc(var(--line-height-ruled) * 10);
+}
+
+ol li {
+    counter-increment: task-counter;
+}
+
+ol li::before {
+    content: counter(task-counter) ".";
+    font-weight: bold;
+    color: var(--color-counter);
+    margin-right: 6px;
+    min-width: 22px;
+    display: inline-block;
+    text-align: right;
+    transition: color 0.3s ease;
+}
+
+ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+li {
+    padding: 4px 6px;
+    margin-bottom: 0;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    height: var(--line-height-ruled);
+    box-sizing: border-box;
+    transition: background-color 0.2s ease;
+}
+
+.task-text {
+    flex-grow: 1;
+    margin-left: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.status-box {
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--color-text-muted);
+    user-select: none;
+    flex-shrink: 0;
+    transition: color 0.2s ease;
+}
+
+.status-box:hover {
+    color: var(--color-completed);
+}
+
+/* ── Drag and Drop ── */
+.draggable {
+    cursor: grab;
+}
+
+.draggable:active {
+    cursor: grabbing;
+}
+
+.dragging {
+    opacity: 0.4;
+    background-color: var(--color-rule);
+    border: 1px dashed var(--color-input-border) !important;
+}
+
+/* ── Completed Items ── */
+.completed-item {
+    color: var(--color-completed);
+    background-color: var(--color-completed-bg);
+    border-left: 3px solid var(--color-completed) !important;
+}
+
+.completed-item .task-text {
+    text-decoration: line-through;
+    color: var(--color-text-muted);
+}
+
+/* ── Pagination Controls ── */
+.pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    gap: 8px;
+}
+
+.page-btn {
+    background: var(--color-page-btn-bg);
+    color: var(--color-page-btn-text);
+    border: 1px solid var(--color-border);
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    padding: 5px 12px;
+    cursor: pointer;
+    margin-left: 0;
+    letter-spacing: 0.1em;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+    background-color: var(--color-page-btn-hover);
+}
+
+.page-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* ── Secondary Button ── */
+.secondary-btn {
+    margin-top: 12px;
+    background: var(--color-secondary-btn-bg);
+    color: var(--color-secondary-btn-text);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+}
+
+.secondary-btn:hover {
+    background-color: var(--color-secondary-btn-hover);
+}
+
+/* ── Page Flip Animation ── */
+@keyframes pageFlip {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    40% {
+        opacity: 0;
+        transform: translateX(-16px);
+    }
+
+    60% {
+        opacity: 0;
+        transform: translateX(16px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.page-flip {
+    animation: pageFlip 0.26s ease;
+}
+
+/* ── Footer ── */
+.footer {
+    width: 100%;
+    text-align: center;
+    font-size: 11px;
+    color: var(--color-text-muted);
+    margin-top: 24px; 
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+/* ── Mobile ── */
+@media (max-width: 540px) {
+    :root {
+        --line-height-ruled: 40px; 
+    }
+
+    body {
+        padding: 10px 8px 20px; 
+        align-items: flex-start;
+    }
+
+    .notepad {
+        width: 100%;
+        min-height: 100%; 
+        box-shadow: 4px 4px 15px var(--color-shadow);
+        border: 1px solid var(--color-border);
+        border-radius: 6px;
+    }
+
+    .red-line {
+        left: 28px;
+        z-index: 1;
+    }
+
+    .toolbar {
+        padding-left: 36px;
+        padding-right: 12px;
+        position: relative; 
+    }
+
+    .content {
+        padding: 16px 12px 24px 36px;
+        position: relative;
+        z-index: 2;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    input[type="text"] {
+        font-size: 14px; 
+    }
+
+    .task-text {
+        font-size: 15px;
+        margin-left: 8px; 
+    }
+
+    .status-box {
+        margin-left: 0;
+    }
+
+    ol {
+        min-height: calc(var(--line-height-ruled) * 10);
+    }
+
+    .page-btn {
+        flex: 1;
+        justify-content: center;
+        padding: 8px 12px;
+    }
+}
